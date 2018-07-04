@@ -49,8 +49,6 @@ class FirebaseService: MessageReceivable {
             var users = self.getData.getUsers(from: dictionary!)
             users?.id = snapshot.key
             completion(users!)
-            
-            
         }
     }
     

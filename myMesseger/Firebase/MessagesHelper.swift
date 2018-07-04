@@ -12,12 +12,12 @@ import Firebase
 
 class MessagesHelper {
     
-    func handleSendMasseges(messege: String?, toId: String, imageMessage: String?) {
+    func handleSendMasseges(messege: String, toId: String) {
         let ref =  Database.database().reference().child("messeges")
         let childFef = ref.childByAutoId()
         let fromId = Auth.auth().currentUser?.uid
         let timeSendMessege = NSDate().timeIntervalSince1970
-        let value = ["textMessage": messege ?? String.self, "imageMessage": imageMessage ?? String.self, "toId": toId, "fromId" : fromId!, "timeSendMessage": timeSendMessege] as [String : Any]
+        let value = ["textMessage": messege, "toId": toId, "fromId" : fromId!, "timeSendMessage": timeSendMessege] as [String : Any]
         childFef.updateChildValues(value) { (error, ref) in
             if error != nil  {
                 print(error!)
@@ -32,8 +32,6 @@ class MessagesHelper {
         }
        
     }
-    
-    
     
     func receivingMessagesFromFireData(completion: @escaping ((MessageStructure) -> ()))  {
         guard let uid = Auth.auth().currentUser?.uid else {return}

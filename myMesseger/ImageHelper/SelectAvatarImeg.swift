@@ -12,16 +12,14 @@ extension SettingsController : UIImagePickerControllerDelegate, UINavigationCont
         picker.delegate = self
         picker.allowsEditing = true
         
-        let curentId = FirebaseHelper().currentId
-        let ref = FirebaseHelper().ref
-        ref.child("users").child(curentId!).child("profileImage").removeValue()
-
         present(picker, animated: true, completion: nil)
+        
     }
     
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         var selectedImageFromPicker: UIImage?
+        print(info)
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
             selectedImageFromPicker = editedImage
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {

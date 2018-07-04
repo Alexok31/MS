@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/aleksandrharcenko/Desktop/H/myMesseger/BottomBarChatView.swift">
+   </FileRef>
+   <FileRef
       location = "group:myMesseger.xcodeproj">
    </FileRef>
    <FileRef

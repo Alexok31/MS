@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		421E4F2B20D9851000BB602E /* BottomBarChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421E4F2A20D9851000BB602E /* BottomBarChatView.swift */; };
 		4233E29820B6F713005DADC1 /* MessageStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233E29720B6F713005DADC1 /* MessageStructure.swift */; };
 		4233E29B20B739CA005DADC1 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4233E29A20B739CA005DADC1 /* SettingsController.swift */; };
 		4243037720D06BEB0035C379 /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4243037620D06BEB0035C379 /* GetData.swift */; };
 		4243037920D06CCB0035C379 /* MessagesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4243037820D06CCB0035C379 /* MessagesHelper.swift */; };
 		4243037D20D19AF40035C379 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4243037C20D19AF40035C379 /* FirebaseHelper.swift */; };
-		4260BB3820B74F6300A8D1AD /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4260BB3720B74F6300A8D1AD /* MessagesCell.swift */; };
+		4260BB3820B74F6300A8D1AD /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4260BB3720B74F6300A8D1AD /* ChatTableViewCell.swift */; };
 		4281A1F620AD9D77007F382D /* RegisterAndLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4281A1F520AD9D77007F382D /* RegisterAndLogin.swift */; };
-		429A732A20E3EA1300B33DF3 /* SendImegToChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A732920E3EA1300B33DF3 /* SendImegToChat.swift */; };
 		42A1091E20C4541F003B3197 /* SelectAvatarImeg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A1091D20C4541F003B3197 /* SelectAvatarImeg.swift */; };
 		42A1092020C4A4E0003B3197 /* DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A1091F20C4A4E0003B3197 /* DownloadImage.swift */; };
-		42A96AD620E117A50075321D /* NewMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A96AD520E117A50075321D /* NewMessageCell.swift */; };
 		42B7F0C820B4A54D00951A87 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B7F0C720B4A54D00951A87 /* NewMessageController.swift */; };
 		42B7F0CA20B4BF5C00951A87 /* UserStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B7F0C920B4BF5C00951A87 /* UserStructure.swift */; };
 		42C9DAE820AB50F900C02BCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C9DAE720AB50F900C02BCF /* AppDelegate.swift */; };
@@ -39,17 +38,16 @@
 /* Begin PBXFileReference section */
 		2D5C6288AFD128E3318721A6 /* Pods-myMesseger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myMesseger.release.xcconfig"; path = "Pods/Target Support Files/Pods-myMesseger/Pods-myMesseger.release.xcconfig"; sourceTree = "<group>"; };
 		393BBC6C359EFF0A87B8C4F7 /* Pods-myMesseger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myMesseger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-myMesseger/Pods-myMesseger.debug.xcconfig"; sourceTree = "<group>"; };
+		421E4F2A20D9851000BB602E /* BottomBarChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BottomBarChatView.swift; path = /Users/aleksandrharcenko/Desktop/H/myMesseger/BottomBarChatView.swift; sourceTree = "<absolute>"; };
 		4233E29720B6F713005DADC1 /* MessageStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStructure.swift; sourceTree = "<group>"; };
 		4233E29A20B739CA005DADC1 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		4243037620D06BEB0035C379 /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
 		4243037820D06CCB0035C379 /* MessagesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesHelper.swift; sourceTree = "<group>"; };
 		4243037C20D19AF40035C379 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
-		4260BB3720B74F6300A8D1AD /* MessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
+		4260BB3720B74F6300A8D1AD /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		4281A1F520AD9D77007F382D /* RegisterAndLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAndLogin.swift; sourceTree = "<group>"; };
-		429A732920E3EA1300B33DF3 /* SendImegToChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendImegToChat.swift; sourceTree = "<group>"; };
 		42A1091D20C4541F003B3197 /* SelectAvatarImeg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAvatarImeg.swift; sourceTree = "<group>"; };
 		42A1091F20C4A4E0003B3197 /* DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImage.swift; sourceTree = "<group>"; };
-		42A96AD520E117A50075321D /* NewMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageCell.swift; sourceTree = "<group>"; };
 		42B7F0C720B4A54D00951A87 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		42B7F0C920B4BF5C00951A87 /* UserStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStructure.swift; sourceTree = "<group>"; };
 		42C9DAE420AB50F900C02BCF /* myMesseger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myMesseger.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,8 +101,7 @@
 		4243037A20D06E880035C379 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				4260BB3720B74F6300A8D1AD /* MessagesCell.swift */,
-				42A96AD520E117A50075321D /* NewMessageCell.swift */,
+				4260BB3720B74F6300A8D1AD /* ChatTableViewCell.swift */,
 				42E999E220C00F32001062B5 /* ChatCell.swift */,
 			);
 			path = TableViewCell;
@@ -113,7 +110,6 @@
 		4243037B20D06EC00035C379 /* ImageHelper */ = {
 			isa = PBXGroup;
 			children = (
-				429A732920E3EA1300B33DF3 /* SendImegToChat.swift */,
 				42A1091D20C4541F003B3197 /* SelectAvatarImeg.swift */,
 				42A1091F20C4A4E0003B3197 /* DownloadImage.swift */,
 			);
@@ -127,6 +123,7 @@
 				42C9DAE920AB50F900C02BCF /* MessagesTableViewController.swift */,
 				42B7F0C720B4A54D00951A87 /* NewMessageController.swift */,
 				42D2AF2820B614FF00B52856 /* ChatViewController.swift */,
+				421E4F2A20D9851000BB602E /* BottomBarChatView.swift */,
 				4233E29A20B739CA005DADC1 /* SettingsController.swift */,
 			);
 			path = Controllers;
@@ -326,19 +323,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				429A732A20E3EA1300B33DF3 /* SendImegToChat.swift in Sources */,
 				CE42FAD520C8630F00F91143 /* FirebaseService.swift in Sources */,
 				CE42FAD220C862D700F91143 /* CoreDataHelper.swift in Sources */,
 				4243037920D06CCB0035C379 /* MessagesHelper.swift in Sources */,
 				42FAC94420AB800700CFA753 /* AuthorizationViewController.swift in Sources */,
 				4243037D20D19AF40035C379 /* FirebaseHelper.swift in Sources */,
-				4260BB3820B74F6300A8D1AD /* MessagesCell.swift in Sources */,
+				4260BB3820B74F6300A8D1AD /* ChatTableViewCell.swift in Sources */,
+				421E4F2B20D9851000BB602E /* BottomBarChatView.swift in Sources */,
 				42C9DAF020AB50F900C02BCF /* myMesseger.xcdatamodeld in Sources */,
 				42B7F0CA20B4BF5C00951A87 /* UserStructure.swift in Sources */,
 				42A1091E20C4541F003B3197 /* SelectAvatarImeg.swift in Sources */,
 				42B7F0C820B4A54D00951A87 /* NewMessageController.swift in Sources */,
 				CE42FAD820C8748100F91143 /* ChatHelper.swift in Sources */,
-				42A96AD620E117A50075321D /* NewMessageCell.swift in Sources */,
 				42E999E320C00F32001062B5 /* ChatCell.swift in Sources */,
 				4281A1F620AD9D77007F382D /* RegisterAndLogin.swift in Sources */,
 				4233E29820B6F713005DADC1 /* MessageStructure.swift in Sources */,
@@ -495,7 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AUXBABJ48;
 				INFOPLIST_FILE = myMesseger/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -503,7 +499,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = alexok.myMesseger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -515,7 +511,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8AUXBABJ48;
 				INFOPLIST_FILE = myMesseger/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -523,7 +519,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = alexok.myMesseger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

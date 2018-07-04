@@ -46,6 +46,8 @@ class AuthorizationViewController: UIViewController {
         autoselectionSegmentedControl.addTarget(self, action: #selector(handleLoginRegistrChange), for: .valueChanged)
     }
     
+    
+
     @objc func handleLoginOrRegister() {
         
         if autoselectionSegmentedControl.selectedSegmentIndex == 0 {

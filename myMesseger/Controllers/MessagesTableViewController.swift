@@ -27,8 +27,9 @@ class MessagesTableViewController: UITableViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        receivingMessagesFromFireData()
+        
     }
+    
     
     func updateData()  {
         messagesArray.removeAll()
@@ -91,6 +92,7 @@ class MessagesTableViewController: UITableViewController{
         
         let message = messagesArray[indexPath.row]
         firebaseService.receivingUsersFromFireDat(message: message) { (user) in
+            
             self.showChatControllerToUser(user)
         }
     
@@ -98,16 +100,43 @@ class MessagesTableViewController: UITableViewController{
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessagesCell
-        cell.avatarImagView.layer.cornerRadius =  cell.avatarImagView.frame.height / 2
+        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! ChatTableViewCell
         let message = messagesArray[indexPath.row]
-        cell.messageSetupCell(message, indexPath: indexPath, messagesArray: messagesArray)
+        let partherId = firebaseService.chatPartnerId(for: message)
+
+        if partherId != nil {
+            firebaseService.receivingUsersFromFireDat(message: message) { (user) in
+                if user.username != nil {
+                    cell.usernameLabel.text = user.username
+                }
+                else {
+                    cell.usernameLabel.text = user.email
+                    
+                }
+                
+                if user.profileImage != nil {
+                    
+                    cell.avatarImegView.layer.masksToBounds = true
+                    cell.avatarImegView.layer.cornerRadius = 30
+                    cell.contentMode = .scaleAspectFill
+                    cell.avatarImegView.downloadImeg(from: (user.profileImage)!)
+                }
+                
+            }
+            
+            cell.messageLabel.text = self.messagesArray[indexPath.row].textMessage
+        }
         
+        if let second = messagesArray[indexPath.row].timeSendMessage{
+            let timestampData = NSDate(timeIntervalSince1970: TimeInterval(truncating: NSNumber(value: second)))
+            let dateFormat = DateFormatter()
+            dateFormat.timeStyle = .short
+            dateFormat.dateStyle = .none
+            dateFormat.locale = Locale(identifier: "ru_UA")
+            cell.timeLabel.text = dateFormat.string(from: timestampData as Date)
+            cell.timeLabel.clipsToBounds = true
+            cell.timeLabel.layer.cornerRadius = 8
+        }
         return cell
     }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        tableView.reloadData()
-    }
-    
 }

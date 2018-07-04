@@ -18,9 +18,8 @@ class NewMessageController: UITableViewController {
         super.viewDidLoad()
         
         fetchUser()
-        
-        
     }
+    
     
     func fetchUser() {
         FirebaseService().fetchAllUsers { (users) in
@@ -38,14 +37,19 @@ class NewMessageController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! NewMessageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath)
         
-        cell.newMessageSetupCell(indexPath, usersArrey: usersArrey as! [UserStructure])
+        if usersArrey[indexPath.row]?.username != nil {
+            
+        cell.textLabel?.text = usersArrey[indexPath.row]?.username
+            
+        }
+        else {
+        
+        cell.textLabel?.text = usersArrey[indexPath.row]?.email
+        }
+        
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,6 +58,7 @@ class NewMessageController: UITableViewController {
         let indexPath = tableView.indexPathForSelectedRow
         if indexPath != nil {
             destinationVC2.users = usersArrey[(indexPath?.row)!]
+            
         }
     }
 }

@@ -14,5 +14,4 @@ struct MessageStructure: Codable {
     var toId : String?
     var textMessage : String?
     var timeSendMessage: Double?
-    var imageMessage : String?
 }

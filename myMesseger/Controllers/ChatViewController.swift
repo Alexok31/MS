@@ -10,33 +10,23 @@ import UIKit
 
 class ChatViewController: UIViewController {
     
+    
+    @IBOutlet weak var textFieldBottom: NSLayoutConstraint!
+    @IBOutlet weak var viewLayoutTop: NSLayoutConstraint!
+    @IBOutlet weak var viewTop: NSLayoutConstraint!
+    @IBOutlet weak var viewBottm: NSLayoutConstraint!
+    @IBOutlet weak var messageSendTextFieldBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var chatCollectionView: UICollectionView!
+    
     var messageArrey = [MessageStructure]()
     private var height: CGFloat = 80
     var timer: Timer?
-  
-    @IBOutlet weak var messageSendTextFieldBottomConstraint: NSLayoutConstraint!
- 
-    @IBOutlet weak var chatCollectionView: UICollectionView!
-    
-    @IBOutlet weak var chatBarView: UIView!
-    
-    @IBAction func sendMessege(_ sender: Any) {
-        if messegeTextField.text != "" {
-            MessagesHelper().handleSendMasseges(messege: messegeTextField.text!, toId: (users?.id)!, imageMessage: nil)
-            messegeTextField.text = nil
-        }
-    }
-    
-    @IBAction func selectImagButton(_ sender: Any) {
-        selectImag()
-    }
-    
-    @IBOutlet weak var messegeTextField: UITextField!
+   
     
     var users : UserStructure? {
         didSet {
             observeMessages()
-           
         }
     }
     
@@ -49,14 +39,18 @@ class ChatViewController: UIViewController {
         } else {
             navigationItem.title = users?.email
         }
-
-        messegeTextField.layer.cornerRadius = messegeTextField.frame.height / 2
-    
+        
+        chatCollectionView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0)
+//        messegeTextField.layer.cornerRadius = messegeTextField.frame.height / 2
+//        messegeTextField.layer.shadowColor = UIColor.red.cgColor
+//        messegeTextField.layer.shadowRadius = 2
+//        messegeTextField.layer.shadowOffset = CGSize(width: 0, height: 0)
+    }
+   
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
-    deinit {
-        removeForKeybordNotification()
-    }
     
     func observeMessages()  {
         MessagesHelper().observeMassages { (message) in
@@ -65,15 +59,20 @@ class ChatViewController: UIViewController {
             }
             DispatchQueue.main.async {
                 self.chatCollectionView.reloadData()
-                if self.messageSendTextFieldBottomConstraint.constant != self.chatBarView.frame.height {
-                    self.lowering()
-                }
+//                if self.messageSendTextFieldBottomConstraint.constant != 8 {
+//                    self.lowering()
+//                }
             }
         }
     }
     
     @IBAction func tapGesters(_ sender: Any) {
-        messegeTextField.resignFirstResponder()
+       // messegeTextField.resignFirstResponder()
+    }
+    
+    
+    deinit {
+        removeForKeybordNotification()
     }
     
     ///
@@ -90,7 +89,8 @@ class ChatViewController: UIViewController {
     @objc func kbWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo
         let kfFrameSize = (userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        messageSendTextFieldBottomConstraint.constant = kfFrameSize.height + 2
+      //  messageSendTextFieldBottomConstraint.constant = kfFrameSize.height + 8
+        
         UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }) { (comlated) in
@@ -102,13 +102,12 @@ class ChatViewController: UIViewController {
     }
     
     @objc func kbWillHide() {
-        messageSendTextFieldBottomConstraint.constant = 2
+      //  messageSendTextFieldBottomConstraint.constant = 8
         UIView.animate(withDuration: 0, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         }) { (comlated) in
             
         }
-        chatCollectionView.reloadData()
     }
     
     func lowering() {
@@ -130,19 +129,36 @@ extension ChatViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "chatCell", for: indexPath) as! ChatCell
-        let message = messageArrey[indexPath.row]
-        cell.bubbleView.layer.cornerRadius = 17
-        cell.textMessageLabel.text = message.textMessage
-        cell.setupCell(message)
         
-        if users?.profileImage != nil {
-            cell.userImage.downloadImeg(from: (users?.profileImage)!)
-        } else {
-            cell.userImage.image = #imageLiteral(resourceName: "defaultProfileImeg")
-        }
-    
+        let message = messageArrey[indexPath.row]
+        cell.bubbleView.layer.cornerRadius = 20
+        cell.textMessageLabel.text = message.textMessage
+        
+        setupCell(cell, message: message)
+        
         return cell
     }
+    
+    func setupCell(_ cell: ChatCell, message: MessageStructure) {
+
+            if message.fromId == FirebaseHelper().authorization.currentUser?.uid {
+                cell.bubbleView.backgroundColor = UIColor(displayP3Red: 30/255, green: 144/255, blue: 255/255, alpha: 1)
+                cell.textMessageLabel.textColor = .white
+                cell.bubbleRightAnchor.constant = 5
+                cell.bubbleWidthAnchor.constant = (UIScreen.main.bounds.size.width - self.estimateFrameFromText(message.textMessage!).width - 30)
+            } else {
+                
+                cell.bubbleView.backgroundColor = UIColor.white
+                cell.textMessageLabel.textColor = .black
+                cell.bubbleWidthAnchor.constant = 5
+                cell.bubbleRightAnchor.constant = (UIScreen.main.bounds.size.width - self.estimateFrameFromText(message.textMessage!).width - 30)
+        }
+        
+        DispatchQueue.main.async(execute: {
+            self.chatCollectionView.reloadData()
+        })
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -150,13 +166,19 @@ extension ChatViewController : UICollectionViewDelegate, UICollectionViewDataSou
         
         if let text = messageArrey[indexPath.row].textMessage {
             
-            height = ChatCell().estimateFrameFromText(text).height + 20
+            height = estimateFrameFromText(text).height + 20
         }
         return CGSize(width: view.frame.width, height: height)
     }
     
+    private func estimateFrameFromText(_ text: String) -> CGRect {
+     
+        let size = CGSize(width: 200, height: 1000)
+        let options = NSStringDrawingOptions.usesLineFragmentOrigin.union(.usesLineFragmentOrigin)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16)], context: nil)
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        chatCollectionView.reloadData()
         chatCollectionView.collectionViewLayout.invalidateLayout()
     }
     

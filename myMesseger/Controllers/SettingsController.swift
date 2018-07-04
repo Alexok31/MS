@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
 
 class SettingsController: UIViewController {
 
@@ -39,21 +38,40 @@ class SettingsController: UIViewController {
         super.viewDidLoad()
         
         getUserInfo()
-        getUserInfo()
-        avatarImeg.clipsToBounds = true
-        avatarImeg.layer.cornerRadius = avatarImeg.frame.height / 2
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getUserInfo()
     }
     
     func settings() {
         let firebaseHelper = FirebaseHelper()
-    
+        let curentId = firebaseHelper.curentUser?.uid
+        let ref = firebaseHelper.ref
+        let storeg = firebaseHelper.storeg
+        
         if nameTextFild.text != "" {
-            firebaseHelper.saveUserName(name: nameTextFild.text!)
-            
+            ref.child("users/\(String(describing: curentId!))/username").setValue(nameTextFild.text!)
         }
+        let storegRef = storeg.reference().child("Profile_Imeg").child(curentId!)
         if avatarImeg.image != nil {
-            firebaseHelper.saveAddressPhotoFromStorage(avatarImeg: avatarImeg)
+            let upLoadData = UIImagePNGRepresentation(avatarImeg.image!)
+            storegRef.putData(upLoadData!, metadata: nil) { (metadata, error) in
+                
+            if error != nil {
+                print(error!)
+                return
+            }
+            storegRef.downloadURL(completion: { (url, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
+                ref.child("users/\(String(describing: curentId!))/profileImage").setValue(url?.absoluteString)
+            })
+            }
         }
     }
     
@@ -64,13 +82,14 @@ class SettingsController: UIViewController {
             }
             if users.profileImage != nil {
                 self.avatarImeg.downloadImeg(from: (users.profileImage!))
+                self.avatarImeg.clipsToBounds = true
+                self.avatarImeg.layer.cornerRadius = 35
             }
+            
         }
-        emailLabel.text = FirebaseHelper().currentEmail
-        if avatarImeg.image == nil {
-            avatarImeg.image = #imageLiteral(resourceName: "defaultProfileImeg")
-        }
+        emailLabel.text = FirebaseHelper().curentUser?.email
     }
+    
     
     func logout() {
         do {
@@ -78,8 +97,9 @@ class SettingsController: UIViewController {
         } catch let loginError {
             print(loginError)
         }
+        
         let authorizationVc = storyboard!.instantiateViewController(withIdentifier: "LoginView") as! AuthorizationViewController
         navigationController?.pushViewController(authorizationVc, animated: true)
-
+        
     }
 }
